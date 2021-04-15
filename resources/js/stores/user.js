@@ -6,7 +6,11 @@ const state = () => ({
     permissions: [],
     role_permission: [],
     authenticated: [],
-    position: []
+    position: [],
+
+    role: {
+        name: '',
+    },
 })
 
 const mutations = {
@@ -27,6 +31,18 @@ const mutations = {
     },
     ASSIGN_USER_AUTH(state, payload) {
         state.authenticated = payload
+    },
+
+    // assign for add data role
+    ASSIGN_FORM(state, payload){
+        state.role = {
+            name: payload.name
+        }
+    },
+    CLEAR_FORM(state){
+        state.role = {
+            name: ''
+        }
     }
 }
 
@@ -104,7 +120,24 @@ const actions = {
                 resolve(response.data)
             })
         })
-    }
+    },
+    // function add data
+    submitRole({ dispatch, commit, state }){
+        return new Promise((resolve, reject) => {
+            $axios.post(`/role-create`, state.role)
+            .then((response)=>{
+                dispatch('getRoles').then(()=>{
+                    commit('CLEAR_FORM')
+                    resolve(response.data)
+                })
+            })
+            .catch((error)=>{
+                if (error.response.status = 422) {
+                    commit('SET_ERRORS', error.response.data.errors, {root:true})
+                }
+            })
+        })
+    },
 }
 
 export default {

@@ -49,6 +49,20 @@
             </select>
             <p class="text-danger" v-if="errors.gender">{{ errors.gender[0] }}</p>
         </div>
+        <div class="form-group" :class="{ 'has-error': errors.role }">
+            <label for="">Role</label>
+            <select name="role" class="form-control" v-model="selected.role">
+                <option value="">Pilih</option>
+                <option v-for="(row, index) in roles" :value="{ id: row.id, name: row.name }" :key="index">
+                    {{ row.name }}
+                </option>
+            </select>
+            <p class="text-danger" v-if="errors.role">{{ errors.role[0] }}</p>
+        </div>
+        <div class="form-group">
+            <input type="text" name="role" :value="selected.role.id">
+            <input type="text" name="assign" :value="selected.role.name">
+        </div>
         <div class="form-group">
             <label for="status">Status</label>
             <select class="form-control" id="status" name="status" v-model="employe.status">
@@ -65,6 +79,7 @@ export default {
     name: 'FormEmploye',
     created() {
         this.getPositions()
+        this.getRoles()
         if (this.$route.name == 'employes.edit') {
             this.editEmploye(this.$route.params.id).then((res) => {
                 this.employe = {
@@ -83,6 +98,9 @@ export default {
     },
     data() {
         return {
+            selected: {
+                role: ''
+            },
             employe: {
                 name: '',
                 email: '',
@@ -100,12 +118,16 @@ export default {
         ...mapState(['errors']),
         ...mapState('position', {
             positions: state => state.positions
+        }),
+        ...mapState('user', {
+            roles: state => state.roles
         })
     },
     methods: {
         ...mapActions('position', ['getPositions']),
         ...mapActions('employe', ['submitEmploye', 'editEmploye', 'updateEmploye']),
         ...mapMutations('employe', ['SET_ID_UPDATE']),
+        ...mapActions('user', ['getRoles']),
         uploadImage(event) {
             this.employe.image = event.target.files[0]
         },
@@ -116,10 +138,12 @@ export default {
             form.append('alamat', this.employe.alamat)
             form.append('phone', this.employe.phone)
             form.append('password', this.employe.password)
+            form.append('role', this.selected.role.id)
             form.append('gender', this.employe.gender)
             form.append('position_id', this.employe.position_id)
             form.append('image', this.employe.image)
             form.append('status', this.employe.status)
+            form.append('assign', this.selected.role.name)
 
             if (this.$route.name == 'employes.add') {
                 this.submitEmploye(form).then(() => {
@@ -130,6 +154,7 @@ export default {
                         phone: '',
                         password: '',
                         gnder: '',
+                        role: '',
                         image: '',
                         position_id: '',
                         status: ''

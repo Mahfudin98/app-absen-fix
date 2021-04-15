@@ -24,6 +24,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/employes/{id}', [UserController::class, 'update'])->name('employes.update');
 Route::post('/login', [LoginController::class, 'login']);
+Route::resource('/employes', UserController::class)->except(['create', 'show', 'update']);
+
+Route::post('/role-permission', [RolePermissionController::class, 'getRolePermission'])->name('role_permission');
 
 Route::group(['middleware' => 'auth:api'], function() {
     // route for position
@@ -32,13 +35,12 @@ Route::group(['middleware' => 'auth:api'], function() {
     // route for permission
     Route::get('/roles', [RolePermissionController::class, 'getAllRole'])->name('roles');
     Route::get('/permissions', [RolePermissionController::class, 'getAllPermission'])->name('permissions');
-    Route::post('/role-permission', [RolePermissionController::class, 'getRolePermission'])->name('role_permission');
     Route::post('/set-role-permission', [RolePermissionController::class, 'setRolePermission'])->name('set_role_permission');
     Route::post('/set-role-user', [RolePermissionController::class, 'setRoleUser'])->name('user.set_role');
+    Route::post('/role-create', [RolePermissionController::class, 'store']);
 
     // route for user
 
-    Route::resource('/employes', UserController::class)->except(['create', 'show', 'update']);
     Route::get('/user-authenticated', [UserController::class, 'getUserLogin'])->name('user.authenticated');
     Route::get('/user-list', [UserController::class, 'userLists'])->name('user.index');
 });

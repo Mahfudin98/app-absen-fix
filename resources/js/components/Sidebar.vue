@@ -55,8 +55,9 @@
             </div>
           </li>
           <li class="nav-item nav-category">
-            <span class="nav-link">Navigation</span>
+            <span class="nav-link">Menu</span>
           </li>
+          <!-- route link for dashboard -->
           <li class="nav-item menu-items">
             <router-link class="nav-link" :to="{ name: 'dashboard' }">
                 <span class="menu-icon">
@@ -65,28 +66,88 @@
                 <span class="menu-title">Dashboard</span>
             </router-link>
           </li>
-          <li class="nav-item menu-items">
+          <!-- route link for position -->
+          <li class="nav-item menu-items" v-if="$can('read positions')">
             <router-link class="nav-link" :to="{ name: 'positions.data' }">
               <span class="menu-icon">
-                <i class="mdi mdi-account-box-outline"></i>
+                <i class="mdi mdi-human"></i>
               </span>
               <span class="menu-title">Position</span>
             </router-link>
           </li>
+          <!-- route link for setting role -->
           <li class="nav-item menu-items">
-            <router-link class="nav-link" :to="{ name: 'role.permissions' }">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
-                <i class="mdi mdi-account-settings"></i>
+                <i class="mdi mdi-folder-account"></i>
               </span>
-              <span class="menu-title">Setting</span>
-            </router-link>
+              <span class="menu-title">Setting Role</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'role.permissions' }">
+                    Role Permission
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'add.permission' }">
+                    Add Permission
+                    </router-link>
+                </li>
+              </ul>
+            </div>
           </li>
-          <li class="nav-item menu-items">
+          <!-- route link for karyawan -->
+          <li class="nav-item menu-items" v-if="$can('read employes')">
             <router-link class="nav-link" :to="{ name: 'employes.data' }">
               <span class="menu-icon">
                 <i class="mdi mdi-account-circle"></i>
               </span>
               <span class="menu-title">Karyawan</span>
+            </router-link>
+          </li>
+          <!-- route link for project -->
+          <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#project" aria-expanded="false" aria-controls="project">
+              <span class="menu-icon">
+                <i class="mdi mdi-library-books"></i>
+              </span>
+              <span class="menu-title">Project</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="project">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'dev.project' }">
+                        Depelovers Project
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'creatore.project' }">
+                        Creator Project
+                    </router-link>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <!-- route link for absen -->
+          <li class="nav-item menu-items" v-if="$can('read employes')">
+            <router-link class="nav-link" :to="{ name: 'absen.index' }">
+              <span class="menu-icon">
+                <i class="mdi mdi-human-greeting"></i>
+              </span>
+              <span class="menu-title">Absen</span>
+            </router-link>
+          </li>
+          <!-- route link for salary -->
+          <li class="nav-item menu-items" v-if="$can('read employes')">
+            <router-link class="nav-link" :to="{ name: 'salary.index' }">
+              <span class="menu-icon">
+                <i class="mdi mdi-grid"></i>
+              </span>
+              <span class="menu-title">Salary</span>
             </router-link>
           </li>
         </ul>

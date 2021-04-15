@@ -9,7 +9,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Str;
 
@@ -27,7 +26,7 @@ class UserController extends Controller
 
     public function userLists()
     {
-        $user = User::where('role', '!=', 3)->get();
+        $user = User::where('role', '!=', 1)->get();
         return new UserCollection($user);
     }
 
@@ -49,16 +48,16 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|string|max:150',
-            'email' => 'required|email|unique:users,email',
-            'alamat' => 'required|string',
-            'phone'  => 'required',
-            'password' => 'required|min:6|string',
-            'position_id' => 'required|exists:positions,id',
-            'gender'    => 'required',
-            'image' => 'required|image'
-        ]);
+        // $this->validate($request, [
+        //     'name' => 'required|string|max:150',
+        //     'email' => 'required|email|unique:users,email',
+        //     'alamat' => 'required|string',
+        //     'phone'  => 'required',
+        //     'password' => 'required|min:6|string',
+        //     'position_id' => 'required|exists:positions,id',
+        //     'gender'    => 'required',
+        //     'image' => 'required|image'
+        // ]);
 
         DB::beginTransaction();
         try {
@@ -78,9 +77,10 @@ class UserController extends Controller
                 'image' => $name,
                 'gender' => $request->gender,
                 'position_id' => $request->position_id,
-                'role' => 2,
                 'status' => $request->status
             ]);
+            $assign = $request->assign;
+            $user->assignRole($assign);
             DB::commit();
             return response()->json(['status' => 'success'], 200);
         } catch (\Exception $e) {

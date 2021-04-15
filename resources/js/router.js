@@ -12,12 +12,28 @@ import EditPosition from './pages/positions/Edit'
 // import page for setting
 import Setting from './pages/settings/Index.vue'
 import SetPermission from './pages/settings/roles/SetPermission.vue'
+import AddRole from './pages/settings/roles/IndexRole.vue'
 
 // import page for employe
 import IndexEmploye from './pages/employes/IndexEmploye'
 import DataEmploye from './pages/employes/DataEmploye'
 import AddEmploye from './pages/employes/AddEmploye'
 import EditEmployes from './pages/employes/Edit'
+
+// import page for project
+import IndexProject from './pages/project/IndexProject.vue'
+// import page for project dev
+import IndexDev from './pages/project/dev/IndexDev.vue'
+// import page for project creator
+import IndexCreator from './pages/project/creator/IndexCreator.vue'
+
+// import page for absen
+import IndexAbsen from './pages/absen/IndexAbsen.vue'
+import Absen from './pages/absen/Absen.vue'
+
+// import page for salary
+import IndexSalary from './pages/salary/IndexSalary.vue'
+import Salary from './pages/salary/Salary.vue'
 
 // import page for not found
 import NotFound from './components/NotFound'
@@ -108,6 +124,60 @@ const router = new Router({
                     component: SetPermission,
                     meta: { title: 'Set Permissions' }
                 },
+                {
+                    path: 'role-add',
+                    name: 'add.permission',
+                    component: AddRole,
+                    meta: { title: 'Add Permissions' }
+                }
+            ]
+        },
+        // path for page Project
+        {
+            path: '/project',
+            component: IndexProject,
+            meta: { requiresAuth: true },
+            children: [
+                {
+                    path: 'dev-project',
+                    name: 'dev.project',
+                    component: IndexDev,
+                    meta: { title: 'Depelover Project' }
+                },
+                {
+                    path: 'creatror-project',
+                    name: 'creatore.project',
+                    component: IndexCreator,
+                    meta: { title: 'Creator Project' }
+                }
+            ]
+        },
+        // path for page Absen
+        {
+            path: '/absen',
+            component: IndexAbsen,
+            meta: { requiresAuth: true },
+            children: [
+                {
+                    path: '',
+                    name: 'absen.index',
+                    component: Absen,
+                    meta: { title: 'Absen Index'}
+                }
+            ]
+        },
+        // path for page salary
+        {
+            path: '/salary',
+            component: IndexSalary,
+            meta: { requiresAuth: true },
+            children: [
+                {
+                    path: '',
+                    name: 'salary.index',
+                    component: Salary,
+                    meta: { title: 'Salary Index'}
+                }
             ]
         }
     ]
