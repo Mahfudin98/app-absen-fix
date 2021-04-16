@@ -10,10 +10,10 @@
 
             <div v-show="isCameraOpen && isLoading" class="camera-loading">
                 <ul class="loader-circle d-flex justify-content-center">
-                    <atom-spinner
-                        :animation-duration="1000"
-                        :size="80"
-                        :color="'#ff1d5e'"
+                    <half-circle-spinner
+                        :animation-duration="2000"
+                        :size="70"
+                        color="#ff1d5e"
                     />
                 </ul>
             </div>
@@ -46,6 +46,7 @@
 
 <script>
  import {AtomSpinner} from 'epic-spinners'
+ import { HalfCircleSpinner } from 'epic-spinners'
 export default {
  data() {
     return {
@@ -124,7 +125,8 @@ export default {
     }
   },
   components: {
-      AtomSpinner
+      AtomSpinner,
+      HalfCircleSpinner
     }
 }
 </script>
