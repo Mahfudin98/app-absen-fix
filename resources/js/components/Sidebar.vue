@@ -2,7 +2,7 @@
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
             <router-link class="sidebar-brand brand-logo" to="/"><img :src="'/assets/images/logo.svg'" alt="logo" /></router-link>
-            <router-link class="sidebar-brand brand-logo-mini" to="/"><img :src="'/assets/images/logo-mini.svg'" alt="logo" /></router-link>
+            <router-link class="sidebar-brand brand-logo-mini" to="/"><img :src="'/img/logo.png'" :width="75" :height="106" alt="logo" /></router-link>
         </div>
         <ul class="nav">
           <li class="nav-item profile">
@@ -77,14 +77,14 @@
           </li>
           <!-- route link for setting role -->
           <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#role" aria-expanded="false" aria-controls="role">
               <span class="menu-icon">
                 <i class="mdi mdi-folder-account"></i>
               </span>
               <span class="menu-title">Setting Role</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="role">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
                     <router-link class="nav-link" :to="{ name: 'role.permissions' }">
@@ -112,7 +112,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#project" aria-expanded="false" aria-controls="project">
               <span class="menu-icon">
-                <i class="mdi mdi-library-books"></i>
+                <i class="fas fa-tasks"></i>
               </span>
               <span class="menu-title">Project</span>
               <i class="menu-arrow"></i>
@@ -149,6 +149,45 @@
               </span>
               <span class="menu-title">Salary</span>
             </router-link>
+          </li>
+          <!-- route link for report -->
+          <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#report" aria-expanded="false" aria-controls="report">
+              <span class="menu-icon">
+                <i class="fas fa-file-alt"></i>
+              </span>
+              <span class="menu-title">Report</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="report">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'adv.report.index' }">
+                        Report For ADV
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'cs.report.index' }">
+                        Report For CS
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'manager.report.index' }">
+                        Report For Manager
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'sdm.report.index' }">
+                        Report For SDM
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'shed.report.index' }">
+                        Report For Shed
+                    </router-link>
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
     </nav>

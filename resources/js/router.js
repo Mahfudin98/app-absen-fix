@@ -35,6 +35,19 @@ import Absen from './pages/absen/Absen.vue'
 import IndexSalary from './pages/salary/IndexSalary.vue'
 import Salary from './pages/salary/Salary.vue'
 
+// import page for report
+import IndexReport from './pages/reports/IndexReport.vue'
+// import page for report adv
+import ADVReport from './pages/reports/adv/IndexAdv.vue'
+// import page for report cs
+import CSReport from './pages/reports/cs/IndexCS.vue'
+// import page for report manager
+import ManagerReport from './pages/reports/manager/IndexManager.vue'
+// import page for report sdm
+import SDMReport from './pages/reports/sdm/IndexSDM.vue'
+// import page for report shed
+import ShedReport from './pages/reports/shed/IndexShed.vue'
+
 // import page for not found
 import NotFound from './components/NotFound'
 
@@ -178,6 +191,44 @@ const router = new Router({
                     component: Salary,
                     meta: { title: 'Salary Index'}
                 }
+            ]
+        },
+        // path for page report
+        {
+            path: '/report',
+            component: IndexReport,
+            meta: { requiresAuth: true },
+            children: [
+                {
+                    path: 'adv-report-index',
+                    name: 'adv.report.index',
+                    component: ADVReport,
+                    meta: { title: 'Report ADV' }
+                },
+                {
+                    path: 'cs-report-index',
+                    name: 'cs.report.index',
+                    component: CSReport,
+                    meta: { title: 'Report CS' }
+                },
+                {
+                    path: 'manager-report-index',
+                    name: 'manager.report.index',
+                    component: ManagerReport,
+                    meta: { title: 'Report Manager' }
+                },
+                {
+                    path: 'sdm-report-index',
+                    name: 'sdm.report.index',
+                    component: SDMReport,
+                    meta: { title: 'Report SDM' }
+                },
+                {
+                    path: 'shed-report-index',
+                    name: 'shed.report.index',
+                    component: ShedReport,
+                    meta: { title: 'Report Shed' }
+                },
             ]
         }
     ]

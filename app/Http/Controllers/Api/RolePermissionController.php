@@ -62,7 +62,10 @@ class RolePermissionController extends Controller
             'name' => 'required|string|max:50'
         ]);
 
-        $role = Role::firstOrCreate(['name' => Str::slug($request->name)]);
+        $role = Role::firstOrCreate([
+            'name' => Str::slug($request->name),
+            'guard_name' => 'web'
+            ]);
         return response()->json(['status' => 'success']);
     }
 }

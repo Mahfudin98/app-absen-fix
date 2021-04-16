@@ -30,11 +30,12 @@ import store from './store.js'
 import App from './App.vue'
 import BootstrapVue from 'bootstrap-vue'
 import VueSweetalert2 from 'vue-sweetalert2';
-
+import VueClock from '@dangvanthanh/vue-clock';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import '@mdi/font/css/materialdesignicons.css'
 import Permissions from './mixins/permission.js'
 Vue.mixin(Permissions)
-
+Vue.use(VueClock);
 import { mapActions, mapGetters } from 'vuex'
 
 Vue.use(VueSweetalert2);
@@ -46,6 +47,7 @@ new Vue({
     el: '#app-absen',
     router,
     store,
+    iconfont: 'mdi',
     components: {
         App
     },
