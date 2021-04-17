@@ -46,13 +46,14 @@ import ModalAdd from './ModalAdd'
 export default {
     name: 'DataProjectDev',
     created() {
-        this.getProject();
+        this.getProjects();
     },
     data() {
         return {
             fields: [
                 { key: 'project_name', label: 'Nama Project' },
                 { key: 'position_id', label: 'Posisi'},
+                { key: 'description', label: 'Deskripsi'},
                 { key: 'status', label: 'Status' },
                 { key: 'actions', label: 'Aksi' }
             ],
@@ -85,7 +86,7 @@ export default {
         }
     },
     methods: {
-         ...mapActions('project', ['getProject']),
+        ...mapActions('project', ['getProjects', 'removeProject']),
         showModal() {
             this.$refs['my-modal'].show()
         },
@@ -94,6 +95,30 @@ export default {
         },
         toggleModal() {
             this.$refs['my-modal'].toggle('#toggle-btn')
+        },
+        deleteProject(id) {
+            this.$swal({
+                title: 'Kamu Yakin?',
+                text: "Tindakan ini akan menghapus secara permanent!",
+                icon: 'warning',
+                background: '#12151e',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Iya, Lanjutkan!'
+            }).then((result) => {
+                if (result.value) {
+                    this.removeEmploye(id)
+                    this.$swal({
+                        background: '#3085d6',
+                        title: 'Terhapus!',
+                        text: 'Posisi sudah berhasil dihapus!',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
         }
     },
     components: {

@@ -5,16 +5,22 @@ namespace App\Http\Controllers\Api\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProjectCollection;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
     public function index()
     {
-        $project = Project::with(['user', 'position'])->orderBy('created_at', 'DESC');
+        $user = request()->user();
+        $project = Project::with(['user','position'])->orderBy('created_at', 'DESC');
         if (request()->q != '') {
             $project = $project->where('project_name', 'LIKE', '%' . request()->q . '%');
         }
+        if ($user->role != 0) {
+            $project = $project->where('user_id', $user->id);
+        }
+
         $project = $project->paginate(10);
 
         return new ProjectCollection($project);
