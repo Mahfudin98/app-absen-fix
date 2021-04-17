@@ -6,6 +6,7 @@ import auth from './stores/auth.js'
 import position from './stores/position.js'
 import user from './stores/user'
 import employe from './stores/employe'
+import project from './stores/project'
 
 Vue.use(Vuex)
 
@@ -15,7 +16,8 @@ const store = new Vuex.Store({
         auth,
         position,
         user,
-        employe
+        employe,
+        project
     },
     state: {
         token: localStorage.getItem('token'),

@@ -20,4 +20,19 @@ class Position extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function project()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    public function resultProject()
+    {
+        return $this->hasMany(ResultProject::class);
+    }
+
+    public function taskProject()
+    {
+        return $this->hasMany(TaskProject::class);
+    }
 }

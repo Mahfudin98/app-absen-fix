@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\PositionsController;
+use App\Http\Controllers\Api\Project\ProjectController;
 use App\Http\Controllers\Api\RolePermissionController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
@@ -22,9 +23,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/employes/{id}', [UserController::class, 'update'])->name('employes.update');
 Route::post('/login', [LoginController::class, 'login']);
-Route::resource('/employes', UserController::class)->except(['create', 'show', 'update']);
+Route::resource('/project', ProjectController::class);
 
 Route::post('/role-permission', [RolePermissionController::class, 'getRolePermission'])->name('role_permission');
 
@@ -40,7 +40,10 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/role-create', [RolePermissionController::class, 'store']);
 
     // route for user
-
+    Route::resource('/employes', UserController::class)->except(['create', 'show', 'update']);
+    Route::post('/employes/{id}', [UserController::class, 'update'])->name('employes.update');
     Route::get('/user-authenticated', [UserController::class, 'getUserLogin'])->name('user.authenticated');
     Route::get('/user-list', [UserController::class, 'userLists'])->name('user.index');
+
+    // route for project
 });

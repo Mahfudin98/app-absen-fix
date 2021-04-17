@@ -22882,7 +22882,7 @@ div.tagsinput span.tag a {
 .navbar {
   font-weight: normal;
   background: #191c24;
-  left: 244px;
+  left: 250px;
   transition: left 0.25s ease;
   -webkit-transition: left 0.25s ease;
   -moz-transition: left 0.25s ease;
@@ -22901,7 +22901,7 @@ div.tagsinput span.tag a {
   -moz-transition: width 0.25s ease, background 0.25s ease;
   -ms-transition: width 0.25s ease, background 0.25s ease;
   background: #191c24;
-  width: 244px;
+  width: 250px;
   height: 70px;
 }
 
@@ -22927,7 +22927,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar .navbar-brand-wrapper .navbar-brand img {
-  width: calc(244px - 120px );
+  width: calc(250px - 120px );
   max-width: 100%;
   height: 28px;
   margin: auto;
@@ -23338,7 +23338,7 @@ div.tagsinput span.tag a {
   background: #191c24;
   font-weight: normal;
   padding: 0;
-  width: 244px;
+  width: 250px;
   z-index: 11;
   transition: width 0.25s ease, background 0.25s ease;
   -webkit-transition: width 0.25s ease, background 0.25s ease;
@@ -23352,7 +23352,7 @@ div.tagsinput span.tag a {
   -moz-transition: width 0.25s ease, background 0.25s ease;
   -ms-transition: width 0.25s ease, background 0.25s ease;
   background: #191c24;
-  width: 244px;
+  width: 250px;
   height: 70px;
 }
 
@@ -23378,9 +23378,9 @@ div.tagsinput span.tag a {
 }
 
 .sidebar .sidebar-brand-wrapper .sidebar-brand img {
-  width: calc(244px - 120px );
+  width: calc(250px - 120px );
   max-width: 100%;
-  height: 28px;
+  height: 20px;
   margin: auto;
   vertical-align: middle;
 }
@@ -23788,7 +23788,7 @@ div.tagsinput span.tag a {
     top: 70px;
     bottom: 0;
     overflow: auto;
-    right: -244px;
+    right: -250px;
     transition: all 0.25s ease-out;
   }
 
@@ -24065,7 +24065,7 @@ div.tagsinput span.tag a {
   padding-left: 0;
   padding-right: 0;
   transition: all 0.25s ease;
-  width: calc(100% - 244px);
+  width: calc(100% - 250px);
 }
 
 .page-body-wrapper.full-page-wrapper {

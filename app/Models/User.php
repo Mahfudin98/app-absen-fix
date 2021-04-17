@@ -47,4 +47,20 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Position::class);
     }
+
+    // project
+    public function project()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    public function resultProject()
+    {
+        return $this->hasMany(ResultProject::class);
+    }
+
+    public function taskProject()
+    {
+        return $this->hasMany(TaskProject::class);
+    }
 }

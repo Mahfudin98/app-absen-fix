@@ -1,7 +1,7 @@
 <template>
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-            <router-link class="sidebar-brand brand-logo" to="/"><img :src="'/assets/images/logo.svg'" alt="logo" /></router-link>
+            <router-link class="sidebar-brand brand-logo" to="/"><img :src="'/img/logo-h.svg'" alt="logo" /></router-link>
             <router-link class="sidebar-brand brand-logo-mini" to="/"><img :src="'/img/logo.svg'" :width="75" :height="106" alt="logo" /></router-link>
         </div>
         <ul class="nav">
