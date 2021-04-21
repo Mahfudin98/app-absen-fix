@@ -60,10 +60,6 @@
             <p class="text-danger" v-if="errors.role">{{ errors.role[0] }}</p>
         </div>
         <div class="form-group">
-            <input type="text" name="role" :value="selected.role.id">
-            <input type="text" name="assign" :value="selected.role.name">
-        </div>
-        <div class="form-group">
             <label for="status">Status</label>
             <select class="form-control" id="status" name="status" v-model="employe.status">
                 <option v-bind:value="1" selected>Active</option>

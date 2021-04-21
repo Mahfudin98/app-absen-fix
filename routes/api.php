@@ -25,6 +25,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/login', [LoginController::class, 'login']);
 // Route::resource('/projects', ProjectController::class);
+Route::get('/dev-view/{slug}', [ProjectController::class, 'viewDev'])->name('view.dev');
+Route::get('/dev-project/{slug}', [ProjectController::class, 'viewProjectDev'])->name('view.project.dev');
 
 Route::post('/role-permission', [RolePermissionController::class, 'getRolePermission'])->name('role_permission');
 
@@ -47,5 +49,6 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     // route for project
     Route::get('/projects', [ProjectController::class, 'index']);
-    Route::post('/projects', [ProjectController::class, 'store']);
+    // route for project dev
+    Route::post('/projects-dev', [ProjectController::class, 'storeDev'])->name('store.devproject');
 });

@@ -1,10 +1,11 @@
 import $axios from '../api.js'
-import user from './user'
 
 const state = () => ({
     projects: [],
     page: 1,
     id: '',
+    slug: '',
+    data: ''
 })
 
 const mutations = {
@@ -16,6 +17,12 @@ const mutations = {
     },
     SET_ID_UPDATE(state, payload) {
         state.id = payload
+    },
+    ASSIGN_SLUG_DATA(state, payload){
+        state.slug = payload
+    },
+    ASSIGN_DATA_SLUG(state,payload){
+        state.data = payload
     }
 }
 
@@ -30,9 +37,10 @@ const actions = {
             })
         })
     },
-    submitProject({ dispatch, commit }, payload) {
+    // submit project dev
+    submitProjectDev({ dispatch, commit }, payload) {
         return new Promise((resolve, reject) => {
-            $axios.post(`/projects`, payload, {
+            $axios.post(`/projects-dev`, payload, {
 
             })
             .then((response) => {
@@ -47,17 +55,35 @@ const actions = {
             })
         })
     },
-    editEmploye({ commit }, payload) {
+    viewDev({ commit }, payload){
+        return new Promise((resolve, reject)=>{
+            $axios.get(`/dev-view/${payload}`)
+            .then((response)=> {
+                commit('ASSIGN_SLUG_DATA', response.data.data)
+                resolve(response.data)
+            })
+        })
+    },
+    viewProjectDev({ commit }, payload){
+        return new Promise((resolve, reject)=>{
+            $axios.get(`/dev-project/${payload}`)
+            .then((response)=> {
+                commit('ASSIGN_DATA_SLUG', response.data.data)
+                resolve(response.data)
+            })
+        })
+    },
+    editProjectDev({ commit }, payload) {
         return new Promise((resolve, reject) => {
-            $axios.get(`/employes/${payload}/edit`)
+            $axios.get(`/projects/${payload}/edit`)
             .then((response) => {
                 resolve(response.data)
             })
         })
     },
-    updateEmploye({ state }, payload) {
+    updateProjectDev({ state }, payload) {
         return new Promise((resolve, reject) => {
-            $axios.post(`/employes/${state.id}`, payload, {
+            $axios.post(`/projects/${state.id}`, payload, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -67,9 +93,9 @@ const actions = {
             })
         })
     },
-    removeEmploye({ dispatch }, payload) {
+    removeProjectDev({ dispatch }, payload) {
         return new Promise((resolve, reject) => {
-            $axios.delete(`/employes/${payload}`)
+            $axios.delete(`/projects/${payload}`)
             .then((response) => {
                 dispatch('getEmployes').then(() => resolve(response.data))
             })

@@ -23,6 +23,9 @@
         <div class="card-body">
             <div class="table-responsive">
                 <b-table class="table" :items="projects.data" :fields="fields" show-empty>
+                    <template v-slot:cell(project_name)="row">
+                        <router-link :to="{ name:'dev.view', params: { slug: row.item.slug }}">{{ row.item.project_name }}</router-link>
+                    </template>
                     <template v-slot:cell(position_id)="row">
                         {{ row.item.position.name }}
                     </template>
@@ -55,7 +58,6 @@ export default {
                 { key: 'position_id', label: 'Posisi'},
                 { key: 'description', label: 'Deskripsi'},
                 { key: 'status', label: 'Status' },
-                { key: 'actions', label: 'Aksi' }
             ],
             search: '',
             headerBgVariant: 'info',

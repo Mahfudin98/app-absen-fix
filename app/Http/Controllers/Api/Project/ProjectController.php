@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProjectCollection;
 use App\Models\Project;
+use App\Models\TaskProject;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class ProjectController extends Controller
         return new ProjectCollection($project);
     }
 
-    public function store(Request $request)
+    // controller for dev
+    public function storeDev(Request $request)
     {
         $this->validate($request, [
             'project_name' => 'required|string|max:100',
@@ -42,5 +44,18 @@ class ProjectController extends Controller
             'status' => 0,
         ]);
         return response()->json(['status' => 'success'], 200);
+    }
+
+    public function viewDev($slug)
+    {
+        $project = Project::where('slug', $slug)->first();
+        $tasks = TaskProject::where('project_id', $project->id)->get();
+        return response()->json(['status' => 'success', 'data' => $tasks]);
+    }
+
+    public function viewProjectDev($slug)
+    {
+        $project = Project::where('slug', $slug)->first();
+        return response()->json(['status' => 'success', 'data' => $project]);
     }
 }

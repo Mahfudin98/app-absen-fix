@@ -24,6 +24,7 @@ import EditEmployes from './pages/employes/Edit'
 import IndexProject from './pages/project/IndexProject.vue'
 // import page for project dev
 import IndexDev from './pages/project/dev/IndexDev.vue'
+import IndexTaskDev from './pages/project/dev/tasks/IndexTasks'
 // import page for project creator
 import IndexCreator from './pages/project/creator/IndexCreator.vue'
 
@@ -157,6 +158,14 @@ const router = new Router({
                     component: IndexDev,
                     meta: { title: 'Depelover Project' }
                 },
+                // path for tasks project dev
+                {
+                    path: 'view/:slug',
+                    name: 'dev.view',
+                    component: IndexTaskDev,
+                    meta: { title: 'View Tasks Dev'}
+                },
+                // end path for tasks project dev
                 {
                     path: 'creatror-project',
                     name: 'creatore.project',
