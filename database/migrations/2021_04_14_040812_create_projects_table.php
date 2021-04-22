@@ -18,6 +18,7 @@ class CreateProjectsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('project_name');
             $table->unsignedBigInteger('position_id');
+            $table->string('progress')->nullable();
             $table->char('status')->default(0)->comment('0: progress, 1: revision, 2: done');
             $table->string('result')->nullable();
             $table->timestamps();

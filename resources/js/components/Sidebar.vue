@@ -67,7 +67,7 @@
             </router-link>
           </li>
           <!-- route link for position -->
-          <li class="nav-item menu-items" v-if="$can('read positions')">
+          <li class="nav-item menu-items">
             <router-link class="nav-link" :to="{ name: 'positions.data' }">
               <span class="menu-icon">
                 <i class="mdi mdi-human"></i>
@@ -100,7 +100,7 @@
             </div>
           </li>
           <!-- route link for karyawan -->
-          <li class="nav-item menu-items" v-if="$can('read employes')">
+          <li class="nav-item menu-items">
             <router-link class="nav-link" :to="{ name: 'employes.data' }">
               <span class="menu-icon">
                 <i class="mdi mdi-account-circle"></i>
@@ -133,7 +133,7 @@
             </div>
           </li>
           <!-- route link for absen -->
-          <li class="nav-item menu-items" v-if="$can('read employes')">
+          <li class="nav-item menu-items">
             <router-link class="nav-link" :to="{ name: 'absen.index' }">
               <span class="menu-icon">
                 <i class="mdi mdi-human-greeting"></i>
@@ -142,7 +142,7 @@
             </router-link>
           </li>
           <!-- route link for salary -->
-          <li class="nav-item menu-items" v-if="$can('read employes')">
+          <li class="nav-item menu-items">
             <router-link class="nav-link" :to="{ name: 'salary.index' }">
               <span class="menu-icon">
                 <i class="mdi mdi-grid"></i>

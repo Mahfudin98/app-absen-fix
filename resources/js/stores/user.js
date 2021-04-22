@@ -49,7 +49,7 @@ const mutations = {
 const actions = {
     getUserLists({ commit }) {
         return new Promise((resolve, reject) => {
-            $axios.get(`/user-lists`)
+            $axios.get(`/user-list`)
             .then((response) => {
                 commit('ASSIGN_USER', response.data.data)
                 resolve(response.data)

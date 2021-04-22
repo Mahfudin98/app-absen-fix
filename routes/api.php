@@ -29,7 +29,7 @@ Route::get('/dev-view/{slug}', [ProjectController::class, 'viewDev'])->name('vie
 Route::get('/dev-project/{slug}', [ProjectController::class, 'viewProjectDev'])->name('view.project.dev');
 
 Route::post('/role-permission', [RolePermissionController::class, 'getRolePermission'])->name('role_permission');
-
+Route::get('/user-list', [UserController::class, 'userLists'])->name('user.index');
 Route::group(['middleware' => 'auth:api'], function() {
     // route for position
     Route::resource('/positions', PositionsController::class )->except(['show']);
@@ -45,7 +45,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::resource('/employes', UserController::class)->except(['create', 'show', 'update']);
     Route::post('/employes/{id}', [UserController::class, 'update'])->name('employes.update');
     Route::get('/user-authenticated', [UserController::class, 'getUserLogin'])->name('user.authenticated');
-    Route::get('/user-list', [UserController::class, 'userLists'])->name('user.index');
+
 
     // route for project
     Route::get('/projects', [ProjectController::class, 'index']);

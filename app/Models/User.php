@@ -54,13 +54,23 @@ class User extends Authenticatable
         return $this->hasMany(Project::class);
     }
 
-    public function resultProject()
+    public function parent()
     {
-        return $this->hasMany(ResultProject::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function taskProject()
+    public function scopeGetParent($query)
     {
-        return $this->hasMany(TaskProject::class);
+        return $query->whereNull('parent_id');
+    }
+
+    public function getNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    public function child()
+    {
+        return $this->hasMany(User::class, 'parent_id');
     }
 }

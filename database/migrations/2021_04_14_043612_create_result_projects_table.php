@@ -15,9 +15,7 @@ class CreateResultProjectsTable extends Migration
     {
         Schema::create('result_projects', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('project_id');
-            $table->unsignedBigInteger('position_id');
             $table->string('image');
             $table->text('info')->nullable();
             $table->timestamps();

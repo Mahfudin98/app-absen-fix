@@ -38,7 +38,7 @@ export default {
         }),
     },
     methods: {
-        ...mapActions('project', ['submitProject', 'editProject', 'updateProject']),
+        ...mapActions('project', ['submitProjectDev', 'editProject', 'updateProject']),
         ...mapMutations('project', ['SET_ID_UPDATE']),
         submit() {
             let form = new FormData()
@@ -47,7 +47,7 @@ export default {
             form.append('user_id', this.authenticated.id)
             form.append('position_id', this.authenticated.position_id)
 
-            this.submitProject(form).then(() => {
+            this.submitProjectDev(form).then(() => {
                     this.project = {
                         project_name: '',
                         description: '',

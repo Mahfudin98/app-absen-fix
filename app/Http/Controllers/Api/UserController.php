@@ -26,8 +26,9 @@ class UserController extends Controller
 
     public function userLists()
     {
-        $user = User::where('role', '!=', 1)->get();
-        return new UserCollection($user);
+        $position = Position::where('name', 'ADV')->first();
+        $user = User::where('position_id', $position->id)->get();
+        return response()->json(['status' => 'success', 'data' => $user]);
     }
 
     public function getUserLogin()
@@ -69,6 +70,7 @@ class UserController extends Controller
             }
             $user = User::create([
                 'name' => $request->name,
+                'parent_id' => $request->parent_id,
                 'email' => $request->email,
                 'alamat' => $request->alamat,
                 'phone' => $request->phone,

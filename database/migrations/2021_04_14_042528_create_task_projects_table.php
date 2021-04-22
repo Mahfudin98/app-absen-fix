@@ -15,11 +15,8 @@ class CreateTaskProjectsTable extends Migration
     {
         Schema::create('task_projects', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('project_id');
-            $table->unsignedBigInteger('position_id');
             $table->string('to_do');
-            $table->integer('persent_project');
             $table->boolean('status')->default(0)->comment('0: progress, 1: done');
             $table->timestamps();
         });

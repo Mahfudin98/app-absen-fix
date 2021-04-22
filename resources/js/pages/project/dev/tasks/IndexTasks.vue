@@ -8,9 +8,9 @@
                     <blockquote class="blockquote">
                       <p class="mb-0">{{ data.description }}</p>
                     </blockquote>
-                    <p class="text-muted">Persentase projek <span class="badge badge-warning">10%</span> </p>
+                    <p class="text-muted">Persentase projek <span class="badge badge-warning">{{ data.progress }}</span> </p>
                     <div class="progress progress-md portfolio-progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-success" role="progressbar" :style="progressWidth" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
             </div>
@@ -55,6 +55,11 @@ export default {
             slug: state => state.slug,
             data: state => state.data
         }),
+        progressWidth(){
+            return{
+                width: this.data.progress
+            }
+        }
     },
     methods: {
         ...mapActions('project', ['viewDev', 'viewProjectDev']),

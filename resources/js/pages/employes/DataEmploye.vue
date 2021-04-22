@@ -25,7 +25,7 @@
                             <img :src="'/storage/employe/' + row.item.image" :width="80" :height="50" :alt="row.item.name">
                         </template>
                         <template v-slot:cell(position_id)="row">
-                            {{ row.item.position.name }}
+                            <span class="badge badge-info">{{ row.item.position.name }}</span>
                         </template>
                         <template v-slot:cell(actions)="row">
                             <router-link :to="{ name: 'employes.edit', params: {id: row.item.id} }" class="btn btn-warning btn-md"><i class="mdi mdi-lead-pencil"></i></router-link>
