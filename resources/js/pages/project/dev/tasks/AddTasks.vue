@@ -1,8 +1,5 @@
 <template>
-<div class="col-md-12 grid-margin">
-    <div class="row">
-        <edit-project></edit-project>
-        <div class="col-md-12 col-xl-8 grid-margin stretch-card">
+    <div class="col-md-12 col-xl-8 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">To do list</h4>
@@ -10,15 +7,7 @@
                         <input type="text" class="form-control" name="to_do" v-model="task.to_do" placeholder="enter task..">
                         <button class="add btn btn-primary" @click="add">Add</button>
                     </div>
-                    <div class="d-flex justify-content-center" v-show="loading === true">
-                        <half-circle-spinner
-                            v-show="loading === true"
-                            :animation-duration="2000"
-                            :size="70"
-                            color="#ff1d5e"
-                        />
-                    </div>
-                    <div class="list-wrapper" v-show="loading == false">
+                    <div class="list-wrapper" >
                         <ul class="d-flex flex-column-reverse text-white">
                             <li v-for="row in slug" :key="row.id">
                                 <b-form-checkbox
@@ -35,15 +24,11 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 </template>
+
 
 <script>
 import { mapActions, mapState, mapMutations } from 'vuex'
-import {AtomSpinner} from 'epic-spinners'
-import { HalfCircleSpinner } from 'epic-spinners'
-import EditProject from './EditProject'
 export default {
     name: 'DataProjectDev',
     created() {
@@ -52,7 +37,6 @@ export default {
     },
     data() {
         return {
-            loading: false,
             task: {
                 to_do: '',
             }
@@ -75,15 +59,12 @@ export default {
             form.append('project_id', this.data.id)
             form.append('to_do', this.task.to_do)
             this.SET_SLUG(this.$route.params.slug)
-            this.loading = true
+
             this.submitTaskProjectDev(form).then(() => {
                 this.task = {
                     to_do: '',
                 }
-
-                this.loading = false
                 this.$router.push({ name: 'dev.view' })
-                .catch(()=>{});
             })
         },
         deleteTaskdev(id) {
@@ -98,7 +79,6 @@ export default {
                 confirmButtonText: 'Iya, Lanjutkan!'
             }).then((result) => {
                 if (result.value) {
-                    this.SET_SLUG(this.$route.params.slug)
                     this.deleteTaskDev(id)
                     this.$swal({
                         background: '#3085d6',
@@ -112,10 +92,5 @@ export default {
             })
         }
     },
-    components:{
-        'edit-project': EditProject,
-        AtomSpinner,
-        HalfCircleSpinner
-    }
 }
 </script>

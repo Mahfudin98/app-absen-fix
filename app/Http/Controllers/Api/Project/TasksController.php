@@ -21,4 +21,11 @@ class TasksController extends Controller
         ]);
         return response()->json(['status' => 'success'], 200);
     }
+
+    public function deleteTaskdev($id)
+    {
+        $task = TaskProject::find($id);
+        $task->delete();
+        return response()->json(['status' => 'success'], 200);
+    }
 }

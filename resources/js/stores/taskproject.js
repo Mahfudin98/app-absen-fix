@@ -13,6 +13,9 @@ const mutations = {
     ASSIGN_SLUG_DATA(state, payload){
         state.slug = payload
     },
+    SET_SLUG(state, payload) {
+        state.slug = payload
+    },
 }
 
 const actions = {
@@ -25,18 +28,26 @@ const actions = {
             })
         })
     },
-    submitTaskProjectDev({ dispatch, commit }, payload){
+    submitTaskProjectDev({ dispatch, commit, state }, payload){
         return new Promise((resolve, reject) => {
             $axios.post(`/dev-post`, payload)
             .then((response) => {
-                dispatch('viewDev').then(() => {
+                dispatch('viewDev', state.slug).then(() => {
                     resolve(response.data)
                 })
             })
             .catch((error) => {
                 if (error.response.status == 422) {
-                    commit('ST_ERRORS', error.response.data.errors, { root: true })
+                    commit('SET_ERRORS', error.response.data.errors, { root: true })
                 }
+            })
+        })
+    },
+    deleteTaskDev({ dispatch, state }, payload){
+        return new Promise((resolve, reject) => {
+            $axios.delete(`/dev-delete/${payload}`)
+            .then((response) => {
+                dispatch('viewDev', state.slug).then(() => resolve())
             })
         })
     }

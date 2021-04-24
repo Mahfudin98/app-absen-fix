@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-6 col-xl-4 grid-margin stretch-card">
+    <div class="col-md-6 col-xl-4 grid-margin">
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex flex-row justify-content-between">
@@ -77,11 +77,9 @@ export default {
                         showConfirmButton: false,
                         timer: 2000
                     })
-                    this.$router.push({ name: 'dev.view' })
-                    .catch(()=>{})
                     this.edit =  false
                 })
-        }
+        },
     },
 }
 </script>
