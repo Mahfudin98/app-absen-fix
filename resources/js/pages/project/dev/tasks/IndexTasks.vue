@@ -20,14 +20,14 @@
                     </div>
                     <div class="list-wrapper" v-show="loading == false">
                         <ul class="d-flex flex-column-reverse text-white">
-                            <li v-for="row in slug" :key="row.id">
-                                <b-form-checkbox
-                                    name="checkbox-1"
-                                    value="accepted"
-                                    unchecked-value="not_accepted"
-                                >
-                                {{ row.to_do }}
-                                </b-form-checkbox>
+                            <li v-for="(row, index) in slug" :value="row.id" :key="index">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" name="status" :id="row.to_do" v-model="row.status">
+                                    <label class="form-check-label" :for="row.to_do">
+                                        <p v-if="row.status == 0">{{ row.to_do }}</p>
+                                        <s v-else>{{ row.to_do }}</s>
+                                    </label>
+                                </div>
                                 <i class="remove mdi mdi-close-box" @click="deleteTaskdev(row.id)"></i>
                             </li>
                         </ul>
@@ -47,15 +47,21 @@ import EditProject from './EditProject'
 export default {
     name: 'DataProjectDev',
     created() {
-        this.viewDev(this.$route.params.slug);
+        this.viewDev(this.$route.params.slug).then((res) => {
+            this.task = {
+                 status: res.data.status
+            }
+        });
         this.viewProjectDev(this.$route.params.slug);
     },
     data() {
         return {
             loading: false,
+            checkbox: [],
             task: {
                 to_do: '',
-            }
+                status: ''
+            },
         }
     },
     computed: {

@@ -28,4 +28,13 @@ class TasksController extends Controller
         $task->delete();
         return response()->json(['status' => 'success'], 200);
     }
+
+    public function updateTask(TaskProject $task)
+    {
+        $task->update([
+            'status' => request()->has('status')
+        ]);
+
+        return response()->json(['status' => 'success'], 200);
+    }
 }
