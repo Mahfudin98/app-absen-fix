@@ -15,15 +15,15 @@ const mutations = {
     SET_PAGE(state, payload) {
         state.page = payload
     },
-    SET_ID_UPDATE(state, payload) {
-        state.id = payload
+    SET_SLUG_UPDATE(state, payload) {
+        state.slug = payload
     },
     ASSIGN_SLUG_DATA(state, payload){
         state.slug = payload
     },
     ASSIGN_DATA_SLUG(state,payload){
         state.data = payload
-    }
+    },
 }
 
 const actions = {
@@ -40,9 +40,7 @@ const actions = {
     // submit project dev
     submitProjectDev({ dispatch, commit }, payload) {
         return new Promise((resolve, reject) => {
-            $axios.post(`/projects-dev`, payload, {
-
-            })
+            $axios.post(`/projects-dev`, payload)
             .then((response) => {
                 dispatch('getProjects').then(() => {
                     resolve(response.data)
@@ -55,15 +53,6 @@ const actions = {
             })
         })
     },
-    viewDev({ commit }, payload){
-        return new Promise((resolve, reject)=>{
-            $axios.get(`/dev-view/${payload}`)
-            .then((response)=> {
-                commit('ASSIGN_SLUG_DATA', response.data.data)
-                resolve(response.data)
-            })
-        })
-    },
     viewProjectDev({ commit }, payload){
         return new Promise((resolve, reject)=>{
             $axios.get(`/dev-project/${payload}`)
@@ -73,21 +62,9 @@ const actions = {
             })
         })
     },
-    editProjectDev({ commit }, payload) {
-        return new Promise((resolve, reject) => {
-            $axios.get(`/projects/${payload}/edit`)
-            .then((response) => {
-                resolve(response.data)
-            })
-        })
-    },
     updateProjectDev({ state }, payload) {
         return new Promise((resolve, reject) => {
-            $axios.post(`/projects/${state.id}`, payload, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
+            $axios.post(`/dev-update/${state.slug}`, payload)
             .then((response) => {
                 resolve(response.data)
             })
@@ -97,7 +74,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             $axios.delete(`/projects/${payload}`)
             .then((response) => {
-                dispatch('getEmployes').then(() => resolve(response.data))
+                dispatch('getProjects').then(() => resolve(response.data))
             })
         })
     }

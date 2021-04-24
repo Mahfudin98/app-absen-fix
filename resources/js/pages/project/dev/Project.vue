@@ -21,8 +21,7 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-                <b-table class="table" :items="projects.data" :fields="fields" show-empty>
+                <b-table responsive :items="projects.data" :fields="fields" show-empty>
                     <template v-slot:cell(project_name)="row">
                         <router-link :to="{ name:'dev.view', params: { slug: row.item.slug }}">{{ row.item.project_name }}</router-link>
                     </template>
@@ -35,7 +34,6 @@
                         <label class="badge badge-success" v-if="row.item.status == 2">Done</label>
                     </template>
                 </b-table>
-            </div>
         </div>
         <div class="card-footer">
 
@@ -56,7 +54,7 @@ export default {
             fields: [
                 { key: 'project_name', label: 'Nama Project' },
                 { key: 'position_id', label: 'Posisi'},
-                { key: 'description', label: 'Deskripsi'},
+                { key: 'description', label: 'Deskripsi' },
                 { key: 'status', label: 'Status' },
             ],
             search: '',

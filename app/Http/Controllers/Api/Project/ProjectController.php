@@ -41,6 +41,7 @@ class ProjectController extends Controller
             'project_name' => $request->project_name,
             'slug' => $request->project_name,
             'description' => $request->description,
+            'progress' => '0%',
             'status' => 0,
         ]);
         return response()->json(['status' => 'success'], 200);
@@ -57,5 +58,20 @@ class ProjectController extends Controller
     {
         $project = Project::where('slug', $slug)->first();
         return response()->json(['status' => 'success', 'data' => $project]);
+    }
+
+    public function update(Request $request, $slug)
+    {
+        $this->validate($request, [
+            'project_name' => 'nullable',
+            'description'  => 'nullable'
+        ]);
+        $project = Project::where('slug', $slug)->first();
+        $project->update([
+            'project_name' => $request->project_name,
+            'description' => $request->description,
+            'progress' => $request->progress,
+        ]);
+        return response()->json(['status' => 'success'], 200);
     }
 }
