@@ -42,6 +42,13 @@ Vue.use(VueSweetalert2);
 Vue.use(BootstrapVue)
 
 // import 'bootstrap-vue/dist/bootstrap-vue.css'
+// vuesax css style
+import Vuesax from 'vuesax'
+
+import 'vuesax/dist/vuesax.css' //Vuesax styles
+Vue.use(Vuesax, {
+
+})
 
 new Vue({
     el: '#app-absen',

@@ -54,4 +54,5 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/dev-post', [TasksController::class, 'addTasksDev'])->name('post.taskdev.project');
     Route::post('/dev-update/{slug}', [ProjectController::class, 'update'])->name('project.dev.update');
     Route::delete('/dev-delete/{id}', [TasksController::class, 'deleteTaskDev'])->name('project.dev.delete');
+    Route::post('/task-update/{task}', [TasksController::class, 'updateTask'])->name('update.task.project');
 });

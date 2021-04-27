@@ -50,6 +50,14 @@ const actions = {
                 dispatch('viewDev', state.slug).then(() => resolve())
             })
         })
+    },
+    updateTaskDev({dispatch, state}, payload){
+        return new Promise((resolve, reject)=>{
+            $axios.post(`/task-update/${payload}`)
+            .then((response)=>{
+                resolve(response.data)
+            })
+        })
     }
 }
 

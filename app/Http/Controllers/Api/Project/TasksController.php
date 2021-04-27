@@ -31,9 +31,15 @@ class TasksController extends Controller
 
     public function updateTask(TaskProject $task)
     {
-        $task->update([
-            'status' => request()->has('status')
-        ]);
+        if ($task->status == 1) {
+            $task->update([
+                'status' => request()->has('status')
+            ]);
+        } else {
+            $task->update([
+                'status' => 1,
+            ]);
+        }
 
         return response()->json(['status' => 'success'], 200);
     }

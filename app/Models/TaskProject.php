@@ -14,4 +14,8 @@ class TaskProject extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    protected $casts = [
+        'status' => 'boolean',
+    ];
 }
