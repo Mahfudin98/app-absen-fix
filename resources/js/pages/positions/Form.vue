@@ -15,7 +15,7 @@
                 </select>
             </div>
         </form>
-        </div>
+    </div>
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex'

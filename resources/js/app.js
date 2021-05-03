@@ -47,8 +47,26 @@ import Vuesax from 'vuesax'
 
 import 'vuesax/dist/vuesax.css' //Vuesax styles
 Vue.use(Vuesax, {
-
+    colors: {
+        primary:'#5b3cc4',
+        success:'rgb(23, 201, 100)',
+        danger:'rgb(242, 19, 93)',
+        warning:'rgb(255, 130, 0)',
+        dark:'rgb(36, 33, 69)'
+    }
 })
+
+var numeral = require("numeral");
+
+Vue.filter("formatNumber", function (value) {
+    return numeral(value).format("0,0");
+});
+Vue.use(require('vue-moment'));
+
+import DateRangePicker from 'vue-mj-daterangepicker'
+import 'vue-mj-daterangepicker/dist/vue-mj-daterangepicker.css'
+
+Vue.use(DateRangePicker)
 
 new Vue({
     el: '#app-absen',

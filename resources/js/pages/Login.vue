@@ -19,9 +19,12 @@
             <div class="alert alert-danger" v-if="errors.invalid">{{ errors.invalid }}</div>
             <div class="form-group d-flex align-items-center justify-content-between">
                 <div class="form-check">
-                    <label class="form-check-label">
+                    <vs-checkbox v-model="data.remember_me">
+                        Remember Me
+                    </vs-checkbox>
+                    <!-- <label class="form-check-label">
                         <input type="checkbox" v-model="data.remember_me"> Remember Me
-                    </label>
+                    </label> -->
                 </div>
                     <!-- <a href="#" class="forgot-pass">Forgot password</a> -->
             </div>

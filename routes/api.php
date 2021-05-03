@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\PositionsController;
 use App\Http\Controllers\Api\Project\ProjectController;
 use App\Http\Controllers\Api\Project\TasksController;
+use App\Http\Controllers\Api\Report\Cs\ReportCsController;
 use App\Http\Controllers\Api\RolePermissionController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
@@ -55,4 +56,9 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/dev-update/{slug}', [ProjectController::class, 'update'])->name('project.dev.update');
     Route::delete('/dev-delete/{id}', [TasksController::class, 'deleteTaskDev'])->name('project.dev.delete');
     Route::post('/task-update/{task}', [TasksController::class, 'updateTask'])->name('update.task.project');
+
+    // route for report cs
+    Route::get('/report-cs', [ReportCsController::class, 'index'])->name('report.cs.index');
+    Route::get('/report-cs/{daterange}', [ReportCsController::class, 'filter'])->name('report.filter.cs.index');
+    Route::post('/post-report-cs', [ReportCsController::class, 'store'])->name('report.cs.add');
 });

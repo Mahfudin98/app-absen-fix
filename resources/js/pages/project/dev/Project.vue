@@ -22,6 +22,45 @@
         </div>
         <div class="card-body">
                 <b-table responsive :items="projects.data" :fields="fields" show-empty>
+                    <template #cell(show_details)="row">
+                        <vs-button
+                            color="#7d33ff"
+                            relief
+                            @click="row.toggleDetails"
+                        >
+                            {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
+                        </vs-button>
+                    </template>
+
+                    <template #row-details="row">
+                        <b-card-group deck>
+                            <b-card footer-tag="footer">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <h4 class="card-title mb-1">Deskripsi</h4>
+                                    <span class="text-muted mb-1">{{ row.item.created_at | moment("dddd, MMMM Do YYYY") }}</span>
+                                </div>
+                                <blockquote class="blockquote">
+                                    <p class="mb-0">{{ row.item.description }}</p>
+                                </blockquote>
+                                <div class="d-flex flex-row justify-content-between">
+                                    <h4 class="card-title mb-1"><p class="text-muted">Persentase projek</p></h4>
+                                    <span class="text-muted mb-1">{{ row.item.progress }}%</span>
+                                </div>
+                                <b-progress :value="row.item.progress" :max="100" show-progress variant="info" striped :animated="animate" class="mt-2"></b-progress>
+                                <template #footer>
+                                    <vs-button
+                                        color="#7d33ff"
+                                        relief
+                                        @click="row.toggleDetails"
+                                    >
+                                    <em>
+                                        Hide Details
+                                    </em>
+                                    </vs-button>
+                                </template>
+                            </b-card>
+                        </b-card-group>
+                    </template>
                     <template v-slot:cell(project_name)="row">
                         <router-link :to="{ name:'dev.view', params: { slug: row.item.slug }}">{{ row.item.project_name }}</router-link>
                     </template>
@@ -52,9 +91,9 @@ export default {
     data() {
         return {
             fields: [
+                { key: 'show_details', label: 'Show Detail' },
                 { key: 'project_name', label: 'Nama Project' },
                 { key: 'position_id', label: 'Posisi'},
-                { key: 'description', label: 'Deskripsi' },
                 { key: 'status', label: 'Status' },
             ],
             search: '',

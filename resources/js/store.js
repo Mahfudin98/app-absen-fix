@@ -8,6 +8,8 @@ import user from './stores/user'
 import employe from './stores/employe'
 import project from './stores/project'
 import taskproject from './stores/taskproject'
+// import for report
+import reportCs from './stores/report/reportCs'
 
 Vue.use(Vuex)
 
@@ -19,7 +21,8 @@ const store = new Vuex.Store({
         user,
         employe,
         project,
-        taskproject
+        taskproject,
+        reportCs
     },
     state: {
         token: localStorage.getItem('token'),
