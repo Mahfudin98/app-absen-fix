@@ -1,5 +1,4 @@
 import $axios from '../../api'
-
 const state = () =>({
     reports: [],
 
@@ -14,6 +13,8 @@ const state = () =>({
     },
 
     page: 1,
+    start: '',
+    end: ''
 })
 
 const mutations = {
@@ -50,9 +51,10 @@ const mutations = {
 
 const actions = {
     getReports({ commit, state }, payload){
-        let search = typeof payload != 'undefined' ? payload:''
+        let start = typeof payload != 'undefined' ? payload:''
+
         return new Promise((resolve, reject) => {
-            $axios.get(`/report-cs?page=${state.page}&q=${search}`)
+            $axios.get(`/report-cs?page=${state.page}&date=${start}+${start}`)
             .then((response)=>{
                 commit('ASSIGN_DATA', response.data)
                 resolve(response.data)

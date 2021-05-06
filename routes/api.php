@@ -59,6 +59,6 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     // route for report cs
     Route::get('/report-cs', [ReportCsController::class, 'index'])->name('report.cs.index');
-    Route::get('/report-cs/{daterange}', [ReportCsController::class, 'filter'])->name('report.filter.cs.index');
+    Route::get('/report-cs-filter', [ReportCsController::class, 'filter'])->name('report.filter.cs.index');
     Route::post('/post-report-cs', [ReportCsController::class, 'store'])->name('report.cs.add');
 });

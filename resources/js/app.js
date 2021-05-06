@@ -63,15 +63,16 @@ Vue.filter("formatNumber", function (value) {
 });
 Vue.use(require('vue-moment'));
 
-import DateRangePicker from 'vue-mj-daterangepicker'
-import 'vue-mj-daterangepicker/dist/vue-mj-daterangepicker.css'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 
-Vue.use(DateRangePicker)
+Vue.use(Vuetify)
 
 new Vue({
     el: '#app-absen',
     router,
     store,
+    vuetify: new Vuetify(),
     iconfont: 'mdi',
     components: {
         App

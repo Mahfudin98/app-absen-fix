@@ -12,12 +12,21 @@
                         </span>
                     </vs-button>
                     <span class="text-muted mb-1">
-                        <input type="text" class="form-control">
+                        <b-form inline>
+                            <b-form-input v-model="dateRangeText" type="text" debounce="500"></b-form-input>
+                            <b-dropdown variant="danger" id="dropdown-form" text="Dropdown Button" ref="dropdown" class="m-2">
+                                <b-dropdown-form>
+                                    <v-date-picker
+                                        v-model="dates"
+                                        range
+                                        color="#f27272"
+                                    ></v-date-picker>
+                                </b-dropdown-form>
+                                <b-dropdown-divider></b-dropdown-divider>
+                            </b-dropdown>
+                        </b-form>
                     </span>
                 </div>
-            </div>
-            <div class="card-header">
-                <date-range-picker :from="$route.query.from" :to="$route.query.to" :panel="$route.query.panel" @update="update"/>
             </div>
             <div class="card-body">
                 <b-table sticky-header :items="reports.data" :fields="fields" striped responsive show-empty>
@@ -104,8 +113,8 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import Datepicker from 'vue-datepicker-ui'
 import AddReportCs from '../cs/AddReportCs.vue'
+import moment from 'moment'
 export default {
     name: 'DataReportCS',
     created() {
@@ -113,6 +122,7 @@ export default {
     },
     data() {
         return {
+            dates: ['', ''],
             active: false,
             fields: [
                 { key: 'show_details', label: '#', variant: 'info' },
@@ -123,13 +133,20 @@ export default {
                 { key: 'omset', label: 'Omset', variant: 'success' },
                 { key: 'created_at', label: 'Tanggal', variant: 'primary' }
             ],
-            search: ''
+            start: '',
+            end: ''
         }
     },
     computed: {
         ...mapState('reportCs', {
             reports: state => state.reports
         }),
+        dateRangeText () {
+        return this.dates.join(' - ')
+      },
+      dateRangeValue (){
+          return this.dates.join('+')
+      }
     },
     page: {
         get() {
@@ -142,7 +159,10 @@ export default {
     watch: {
         page() {
             this.getReports()
-        }
+        },
+        dates() {
+            this.getReports(this.dateRangeValue)
+        },
     },
     methods: {
         ...mapActions('reportCs', ['getReports']),
@@ -150,16 +170,8 @@ export default {
             this.active = false
             this.$refs.formReportCs.submit()
         },
-        update(values) {
-            this.$router.push({ query: Object.assign({}, this.$route.query, {
-                to: values.to,
-                from: values.from,
-                panel: values.panel
-            }) })
-        }
     },
     components: {
-        Datepicker,
         'add-report-cs': AddReportCs
     },
 }
