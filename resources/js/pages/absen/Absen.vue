@@ -1,14 +1,10 @@
 <template>
     <div class="col-md-12 grid-margin">
         <div class="row">
-            <div class="col-xl-4 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <clock-app></clock-app>
-                    </div>
-                </div>
+            <div class="col-xl-12 grid-margin stretch-card">
+                <clock-app></clock-app>
             </div>
-            <div class="col-md-8 grid-margin stretch-card">
+            <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex flex-row justify-content-between">

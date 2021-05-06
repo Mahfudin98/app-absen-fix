@@ -13,16 +13,18 @@
                     </vs-button>
                     <span class="text-muted mb-1">
                         <b-form inline>
-                            <b-form-input v-model="dateRangeText" type="text" debounce="500"></b-form-input>
-                            <b-dropdown variant="danger" id="dropdown-form" text="Dropdown Button" ref="dropdown" class="m-2">
+                            <b-dropdown split
+                            split-variant="outline-warning"
+                            variant="warning"
+                            :text="dateRangeText"
+                            class="m-2">
                                 <b-dropdown-form>
                                     <v-date-picker
                                         v-model="dates"
                                         range
-                                        color="#f27272"
+                                        color="#26303b"
                                     ></v-date-picker>
                                 </b-dropdown-form>
-                                <b-dropdown-divider></b-dropdown-divider>
                             </b-dropdown>
                         </b-form>
                     </span>
@@ -122,7 +124,7 @@ export default {
     },
     data() {
         return {
-            dates: ['', ''],
+            dates: [moment().startOf('month').format('YYYY-MM-DD'),moment().endOf('month').format('YYYY-MM-DD')],
             active: false,
             fields: [
                 { key: 'show_details', label: '#', variant: 'info' },
@@ -133,8 +135,6 @@ export default {
                 { key: 'omset', label: 'Omset', variant: 'success' },
                 { key: 'created_at', label: 'Tanggal', variant: 'primary' }
             ],
-            start: '',
-            end: ''
         }
     },
     computed: {
@@ -142,11 +142,11 @@ export default {
             reports: state => state.reports
         }),
         dateRangeText () {
-        return this.dates.join(' - ')
-      },
-      dateRangeValue (){
-          return this.dates.join('+')
-      }
+            return this.dates.join(' ~ ')
+        },
+        dateRangeValue (){
+            return this.dates.join('+')
+        }
     },
     page: {
         get() {
