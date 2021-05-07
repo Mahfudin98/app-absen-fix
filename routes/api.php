@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\PositionsController;
+use App\Http\Controllers\Api\ProductCategoryController;
+use App\Http\Controllers\Api\ProductTypeController;
 use App\Http\Controllers\Api\Project\ProjectController;
 use App\Http\Controllers\Api\Project\TasksController;
 use App\Http\Controllers\Api\Report\Cs\ReportCsController;
@@ -56,6 +58,12 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('/dev-update/{slug}', [ProjectController::class, 'update'])->name('project.dev.update');
     Route::delete('/dev-delete/{id}', [TasksController::class, 'deleteTaskDev'])->name('project.dev.delete');
     Route::post('/task-update/{task}', [TasksController::class, 'updateTask'])->name('update.task.project');
+
+    // route for product category
+    Route::resource('/product-category', ProductCategoryController::class)->except(['create', 'show', 'delete']);
+    Route::get('/product-category-list', [ProductCategoryController::class, 'listCategory'])->name('product.category.list');
+    // route for product type
+    Route::resource('/product-type', ProductTypeController::class)->except(['create', 'show', 'delete']);
 
     // route for report cs
     Route::get('/report-cs', [ReportCsController::class, 'index'])->name('report.cs.index');

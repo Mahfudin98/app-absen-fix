@@ -52,6 +52,12 @@ import ShedReport from './pages/reports/shed/IndexShed.vue'
 // import page for not found
 import NotFound from './components/NotFound'
 
+// import page for product
+import IndexProduct from './pages/admin/product/Index.vue'
+import IndexProductCategory from './pages/admin/product/productCategory/Index.vue'
+import EditProductCategory from './pages/admin/product/productCategory/Edit.vue'
+import IndexProductType from './pages/admin/product/productType/Index.vue'
+
 Vue.use(Router)
 
 //DEFINE ROUTE
@@ -168,7 +174,7 @@ const router = new Router({
                 // end path for tasks project dev
                 {
                     path: 'creatror-project',
-                    name: 'creatore.project',
+                    name: 'creator.project',
                     component: IndexCreator,
                     meta: { title: 'Creator Project' }
                 }
@@ -239,7 +245,35 @@ const router = new Router({
                     meta: { title: 'Report Shed' }
                 },
             ]
-        }
+        },
+        // path for product category & type
+        {
+            path: '/product',
+            component: IndexProduct,
+            meta: { requiresAuth: true },
+            children: [
+                {
+                    path: 'category',
+                    name: 'product.category',
+                    component: IndexProductCategory,
+                    meta: { title: 'Kategori Produk' }
+                },
+                // path for tasks project dev
+                {
+                    path: 'edit-product-category/:id',
+                    name: 'product.category.edit',
+                    component: EditProductCategory,
+                    meta: { title: 'Edit Product Category' }
+                },
+                // end path for tasks project dev
+                {
+                    path: 'type',
+                    name: 'product.type',
+                    component: IndexProductType,
+                    meta: { title: 'Tipe Peroduk' }
+                }
+            ]
+        },
     ]
 });
 

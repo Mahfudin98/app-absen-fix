@@ -125,7 +125,7 @@
                     </router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" :to="{ name: 'creatore.project' }">
+                    <router-link class="nav-link" :to="{ name: 'creator.project' }">
                         Creator Project
                     </router-link>
                 </li>
@@ -184,6 +184,29 @@
                 <li class="nav-item">
                     <router-link class="nav-link" :to="{ name: 'shed.report.index' }">
                         Report For Shed
+                    </router-link>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#product" aria-expanded="false" aria-controls="product">
+              <span class="menu-icon">
+                <i class="fas fa-store-alt"></i>
+              </span>
+              <span class="menu-title">Product</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="product">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'product.category' }">
+                        Product Category
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'product.type' }">
+                        Product Type
                     </router-link>
                 </li>
               </ul>

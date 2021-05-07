@@ -35,13 +35,15 @@ class ProjectController extends Controller
             'description'  => 'nullable'
         ]);
 
+        $user = request()->user();
+
         Project::create([
-            'user_id' => $request->user_id,
-            'position_id' => $request->position_id,
+            'user_id' => $user->id,
+            'position_id' => $user->position_id,
             'project_name' => $request->project_name,
             'slug' => $request->project_name,
             'description' => $request->description,
-            'progress' => '0%',
+            'progress' => 0,
             'status' => 0,
         ]);
         return response()->json(['status' => 'success'], 200);

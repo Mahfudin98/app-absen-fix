@@ -11,13 +11,15 @@
                             Add Report CS
                         </span>
                     </vs-button>
-                    <span class="text-muted mb-1">
+                    <div class="text-muted mb-1">
                         <b-form inline>
+                            <span class="text-light">Filter Tanggal</span>
                             <b-dropdown split
                             split-variant="outline-warning"
                             variant="warning"
                             :text="dateRangeText"
-                            class="m-2">
+                            class="m-2"
+                            no-caret>
                                 <b-dropdown-form>
                                     <v-date-picker
                                         v-model="dates"
@@ -27,7 +29,7 @@
                                 </b-dropdown-form>
                             </b-dropdown>
                         </b-form>
-                    </span>
+                    </div>
                 </div>
             </div>
             <div class="card-body">

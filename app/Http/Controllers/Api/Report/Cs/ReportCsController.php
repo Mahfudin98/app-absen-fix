@@ -44,11 +44,9 @@ class ReportCsController extends Controller
     {
         $this->validate($request, [
             'chat' => 'required',
-            'lead_masuk' => 'required',
             'order' => 'required',
             'jml_transaksi' => 'required',
             'omset' => 'required',
-            'detail_order' => 'required'
         ]);
 
         $user = request()->user();

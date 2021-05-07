@@ -32,20 +32,15 @@ export default {
         }
     },
     computed: {
-        ...mapState(['errors']),
-        ...mapState('user', {
-            authenticated: state => state.authenticated
-        }),
+        ...mapState(['errors'])
     },
     methods: {
-        ...mapActions('project', ['submitProjectDev', 'editProject', 'updateProject']),
+        ...mapActions('project', ['submitProjectDev']),
         ...mapMutations('project', ['SET_ID_UPDATE']),
         submit() {
             let form = new FormData()
             form.append('project_name', this.project.project_name)
             form.append('description', this.project.description)
-            form.append('user_id', this.authenticated.id)
-            form.append('position_id', this.authenticated.position_id)
 
             this.submitProjectDev(form).then(() => {
                     this.project = {
