@@ -189,6 +189,7 @@
               </ul>
             </div>
           </li>
+          <!-- route link for product category & type -->
           <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#product" aria-expanded="false" aria-controls="product">
               <span class="menu-icon">
@@ -211,6 +212,15 @@
                 </li>
               </ul>
             </div>
+          </li>
+          <!-- route link for order type -->
+          <li class="nav-item menu-items">
+            <router-link class="nav-link" :to="{ name: 'order.type.data' }">
+              <span class="menu-icon">
+                <i class="mdi mdi-truck"></i>
+              </span>
+              <span class="menu-title">Order Type</span>
+            </router-link>
           </li>
         </ul>
     </nav>

@@ -12,8 +12,10 @@ import taskproject from './stores/taskproject'
 import reportCs from './stores/report/reportCs'
 // import product category
 import productCategory from './stores/productCategory'
-// import product typr
+// import product type
 import productType from './stores/productType'
+// import order type
+import orderType from './stores/orderType'
 
 Vue.use(Vuex)
 
@@ -28,7 +30,8 @@ const store = new Vuex.Store({
         taskproject,
         reportCs,
         productCategory,
-        productType
+        productType,
+        orderType
     },
     state: {
         token: localStorage.getItem('token'),

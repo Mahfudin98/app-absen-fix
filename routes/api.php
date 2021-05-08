@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\Order\OrderTypeController;
 use App\Http\Controllers\Api\PositionsController;
 use App\Http\Controllers\Api\ProductCategoryController;
 use App\Http\Controllers\Api\ProductTypeController;
@@ -64,6 +65,10 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/product-category-list', [ProductCategoryController::class, 'listCategory'])->name('product.category.list');
     // route for product type
     Route::resource('/product-type', ProductTypeController::class)->except(['create', 'show', 'delete']);
+
+    // route for order typr
+    Route::resource('/order-type', OrderTypeController::class)->except(['create', 'show', 'delete']);
+    Route::get('/order-type-list', [OrderTypeController::class, 'listType'])->name('order.type.list');
 
     // route for report cs
     Route::get('/report-cs', [ReportCsController::class, 'index'])->name('report.cs.index');

@@ -58,6 +58,11 @@ import IndexProductCategory from './pages/admin/product/productCategory/Index.vu
 import EditProductCategory from './pages/admin/product/productCategory/Edit.vue'
 import IndexProductType from './pages/admin/product/productType/Index.vue'
 
+// import page for ordertype
+import IndexOrderType from './pages/admin/order/Index.vue'
+import EditOrderType from './pages/admin/order/Edit.vue'
+import DataOrderType from './pages/admin/order/OrderType.vue'
+
 Vue.use(Router)
 
 //DEFINE ROUTE
@@ -274,6 +279,26 @@ const router = new Router({
                 }
             ]
         },
+        // path for order type
+        {
+            path: '/order-type',
+            component: IndexOrderType,
+            meta: { requiresAuth: true },
+            children: [
+                {
+                    path: '',
+                    name: 'order.type.data',
+                    component: DataOrderType,
+                    meta: { title: 'Manage Order Type' }
+                },
+                {
+                    path: 'edit/:id',
+                    name: 'order.type.edit',
+                    component: EditOrderType,
+                    meta: { title: 'Edit Order Type' }
+                }
+            ]
+        }
     ]
 });
 
