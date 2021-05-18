@@ -4,11 +4,9 @@ const state = () =>({
 
     report: {
         chat: '',
-        lead_masuk: '',
         order: '',
         jml_transaksi: '',
         omset: '',
-        detail_order: '',
         keterangan: ''
     },
 
@@ -28,22 +26,18 @@ const mutations = {
     ASSIGN_FORM(state, payload){
         state.report = {
             chat: payload.chat,
-            lead_masuk: payload.lead_masuk,
             order: payload.order,
             jml_transaksi: payload.jml_transaksi,
             omset: payload.omset,
-            detail_order: payload.detail_order,
             keterangan: payload.keterangan
         }
     },
     CLEAR_FORM(state){
         state.report = {
             chat: '',
-            lead_masuk: '',
             order: '',
             jml_transaksi: '',
             omset: '',
-            detail_order: '',
             keterangan: ''
         }
     }

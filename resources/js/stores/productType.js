@@ -1,9 +1,9 @@
 import $axios from '../api'
 
 const state = () =>({
-    types: [],
+    typeProducts: [],
 
-    type: {
+    typeProduct: {
         name: '',
         product_category_id: ''
     },
@@ -13,20 +13,20 @@ const state = () =>({
 
 const mutations = {
     ASSIGN_DATA(state, payload){
-        state.types = payload
+        state.typeProducts = payload
     },
 
     SET_PAGE(state, payload){
         state.page = payload
     },
     ASSIGN_FORM(state, payload){
-        state.type = {
+        state.typeProduct = {
             name: payload.name,
             product_category_id: payload.product_category_id
         }
     },
     CLEAR_FORM(state){
-        state.type = {
+        state.typeProduct = {
             name: '',
             product_category_id: ''
         }
@@ -34,7 +34,7 @@ const mutations = {
 }
 
 const actions = {
-    getTypes({ commit, state }, payload){
+    getTypesProduct({ commit, state }, payload){
         let search = typeof payload != 'undefined' ? payload:''
         return new Promise((resolve, reject) => {
             $axios.get(`/product-type?page=${state.page}&q=${search}`)
@@ -54,7 +54,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             $axios.post(`/product-type`, state.type)
             .then((response)=>{
-                dispatch('getTypes').then(()=>{
+                dispatch('getTypesProduct').then(()=>{
                     commit('CLEAR_FORM')
                     resolve(response.data)
                 })

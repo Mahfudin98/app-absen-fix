@@ -17,7 +17,6 @@ class CreateReportCsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->integer('chat');
-            $table->unsignedBigInteger('order_id');
             $table->integer('jml_transaksi');
             $table->integer('omset');
             $table->text('keterangan')->nullable();

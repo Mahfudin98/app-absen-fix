@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Report\Cs;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ReportCsCollection;
+use App\Models\Order;
 use App\Models\ReportCs;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class ReportCsController extends Controller
         $user = request()->user();
         $start = Carbon::now()->startOfMonth()->format('Y-m-d H:i:s');
         $end = Carbon::now()->endOfMonth()->format('Y-m-d H:i:s');
-        $reports = ReportCs::with(['user'])->where('user_id', $user->id)->orderBy('created_at', 'DESC');
+        $reports = ReportCs::with(['order'])->where('user_id', $user->id)->orderBy('created_at', 'DESC');
         if (request()->date != '') {
             $date = explode(" " ,request()->date);
             $start = Carbon::parse($date[0])->format('Y-m-d') .'%00:00:01';
@@ -30,7 +31,7 @@ class ReportCsController extends Controller
         $user = request()->user();
         $start = Carbon::now()->startOfMonth()->format('Y-m-d H:i:s');
         $end = Carbon::now()->endOfMonth()->format('Y-m-d H:i:s');
-        $reports = ReportCs::with(['user'])->where('user_id', $user->id)->orderBy('created_at', 'DESC');
+        $reports = ReportCs::with(['user','order', 'productType'])->where('user_id', $user->id)->orderBy('created_at', 'DESC');
         if (request()->date != '') {
             $date = explode(' - ' ,request()->date);
             $start = Carbon::parse($date[0])->format('Y-m-d') .'%00:00:01';
@@ -44,23 +45,39 @@ class ReportCsController extends Controller
     {
         $this->validate($request, [
             'chat' => 'required',
-            'order' => 'required',
             'jml_transaksi' => 'required',
             'omset' => 'required',
+            'keterangan' => 'nullable'
         ]);
 
-        $user = request()->user();
+        try {
+            $data = $request->all();
+            $user = request()->user();
 
-        ReportCs::create([
-            'user_id' => $user->id,
-            'chat' => $request->chat,
-            'lead_masuk' => $request->lead_masuk,
-            'order' => $request->order,
-            'jml_transaksi' =>$request->jml_transaksi,
-            'omset' => $request->omset,
-            'detail_order' => $request->detail_order,
-            'keterangan' => $request->keterangan
-        ]);
-        return response()->json(['status' => 'success'], 200);
+            $reportcs = ReportCs::create([
+                'user_id' => $user->id,
+                'chat' => $request->chat,
+                'jml_transaksi' =>$request->jml_transaksi,
+                'omset' => $request->omset,
+                'keterangan' => $request->keterangan
+            ]);
+
+            $report = ReportCs::find($reportcs['id']);
+
+            foreach ($data['order'] as $item => $value) {
+                $data2 = array(
+                    'user_id' => $user->id,
+                    'product_type_id' => $data['product_type_id'][$item],
+                    'order_type_id' => $data['order_type_id'][$item],
+                    'report_cs_id' => $report->id,
+                    'order' => $data['order'][$item]
+                );
+                $order = Order::create($data2);
+            }
+
+            return response()->json(['status' => 'success'], 200);
+        } catch (\Throwable $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
     }
 }

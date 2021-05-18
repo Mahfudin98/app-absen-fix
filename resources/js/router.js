@@ -42,6 +42,9 @@ import IndexReport from './pages/reports/IndexReport.vue'
 import ADVReport from './pages/reports/adv/IndexAdv.vue'
 // import page for report cs
 import CSReport from './pages/reports/cs/IndexCS.vue'
+import CSReportData from './pages/reports/cs/ReportCS.vue'
+import CSReportAdd from './pages/reports/cs/Add.vue'
+import CSReportEdit from './pages/reports/cs/Edit.vue'
 // import page for report manager
 import ManagerReport from './pages/reports/manager/IndexManager.vue'
 // import page for report sdm
@@ -227,9 +230,27 @@ const router = new Router({
                 },
                 {
                     path: 'cs-report-index',
-                    name: 'cs.report.index',
                     component: CSReport,
-                    meta: { title: 'Report CS' }
+                    children: [
+                        {
+                            path: '',
+                            component: CSReportData,
+                            name: 'cs.report.data',
+                            meta: { title: 'Report CS' }
+                        },
+                        {
+                            path: 'cs-add-report',
+                            name: 'cs.add.report',
+                            component: CSReportAdd,
+                            meta: { title: 'Add Report CS' }
+                        },
+                        {
+                            path: 'cs-edit-report/:id',
+                            name: 'cs.edit.report',
+                            component: CSReportEdit,
+                            meta: { title: 'Edit Report CS' }
+                        }
+                    ]
                 },
                 {
                     path: 'manager-report-index',

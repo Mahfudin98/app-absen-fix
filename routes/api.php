@@ -63,10 +63,12 @@ Route::group(['middleware' => 'auth:api'], function() {
     // route for product category
     Route::resource('/product-category', ProductCategoryController::class)->except(['create', 'show', 'delete']);
     Route::get('/product-category-list', [ProductCategoryController::class, 'listCategory'])->name('product.category.list');
+    Route::get('/product-category-type-list', [ProductCategoryController::class, 'listProductType'])->name('list.product.type');
+
     // route for product type
     Route::resource('/product-type', ProductTypeController::class)->except(['create', 'show', 'delete']);
 
-    // route for order typr
+    // route for order type
     Route::resource('/order-type', OrderTypeController::class)->except(['create', 'show', 'delete']);
     Route::get('/order-type-list', [OrderTypeController::class, 'listType'])->name('order.type.list');
 

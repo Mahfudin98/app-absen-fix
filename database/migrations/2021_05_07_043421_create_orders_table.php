@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_type_id');
             $table->unsignedBigInteger('order_type_id');
+            $table->unsignedBigInteger('report_cs_id');
             $table->integer('order');
             $table->timestamps();
         });

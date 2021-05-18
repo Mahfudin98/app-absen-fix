@@ -36,4 +36,10 @@ class ProductCategoryController extends Controller
         $category = ProductCategory::all();
         return new ProductCategoryCollection($category);
     }
+
+    public function listProductType()
+    {
+        $product = ProductCategory::with(['productType'])->get();
+        return new ProductCategoryCollection($product);
+    }
 }

@@ -93,6 +93,16 @@ const actions = {
             })
         })
     },
+
+    getListCategoryTypes({ commit }){
+        return new Promise((resolve, reject) => {
+            $axios.get(`/product-category-type-list`)
+            .then((response)=>{
+                commit('ASSIGN_DATA', response.data)
+                resolve(response.data)
+            })
+        })
+    },
 }
 
 export default {
