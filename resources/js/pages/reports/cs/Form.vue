@@ -5,79 +5,64 @@
                     <input type="number" id="chat" class="form-control" name="chat" v-model="report.chat">
                 </div>
                 <v-divider></v-divider>
-                <!-- <v-expansion-panels>
-                    <v-expansion-panel v-for="(row, index) in categorys.data" :key="index">
-                        <v-expansion-panel-header>{{ row.name }}</v-expansion-panel-header>
-                        <v-expansion-panel-content v-for="(prod, product) in row.product_type" :key="product">
-                            <b-row>
-                                <b-col>
-                                    <div class="form-group">
-                                        <label for="lead">{{ prod.name }}</label>
-                                        <input type="number" id="lead" class="form-control" name="product_type_id[]" v-model="report.product_type_id[product]">
-                                    </div>
-                                </b-col>
-                                <b-col>
-                                    <div class="form-group">
-                                        <label for="lead">{{ prod.name }}</label>
-                                        <input type="number" id="lead" class="form-control" name="order[]" v-model="report.order[product]">
-                                    </div>
-                                </b-col>
-                                <b-col>
-                                    <div class="form-group">
-                                        <label for="">Tipe Order</label>
-                                        <select name="order_type_id[]" class="form-control" v-model="report.order_type_id[product]">
-                                            <option value="">Pilih</option>
-                                            <option v-for="(row, index) in types.data" :value="row.id" :key="index">
-                                                {{ row.name }}
-                                            </option>
-                                        </select>
-                                    </div>
-                                </b-col>
-                            </b-row>
 
-                        </v-expansion-panel-content>
-                    </v-expansion-panel>
-                </v-expansion-panels> -->
-                <b-row v-for="(find, index) in finds" :key="index">
-                    <b-col>
-                        <div class="form-group">
-                            <label for="">Product</label>
-                            <select name="order_type_id[]" class="form-control text-light" v-model="report.product_type_id[index]">
-                                <option value="">Pilih</option>
-                                <option v-for="(row, index) in typeProducts.data" :value="row.id" :key="index">
-                                    {{ row.name }}
-                                </option>
-                            </select>
-                        </div>
-                    </b-col>
-                    <b-col>
-                        <div class="form-group">
-                            <label for="lead">Order</label>
-                            <input type="number" id="lead" class="form-control" name="order[]" v-model="report.order[index]">
-                        </div>
-                    </b-col>
-                    <b-col>
-                        <div class="form-group">
-                            <label for="">Tipe Order</label>
-                            <select name="order_type_id[]" class="form-control text-light" v-model="report.order_type_id[index]">
-                                <option value="">Pilih</option>
-                                <option v-for="(row, index) in types.data" :value="row.id" :key="index">
-                                    {{ row.name }}
-                                </option>
-                            </select>
-                        </div>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col>
-                        <b-button
-                            @click="addFind"
-                            variant="primary"
-                        >
-                        Add Field
-                        </b-button>
-                    </b-col>
-                </b-row>
+                <!-- input for array order -->
+                <b-card title="Tambah Orderan">
+                    <b-row v-for="(find, index) in finds" :key="index">
+                        <b-col>
+                            <div class="form-group">
+                                <label for="">Product</label>
+                                <select name="order_type_id[]" class="form-control text-light" v-model="report.product_type_id[index]">
+                                    <option value="">Pilih</option>
+                                    <option v-for="(row, index) in typeProducts.data" :value="row.id" :key="index">
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </b-col>
+                        <b-col cols="12" md="auto">
+                            <div class="form-group">
+                                <label for="lead">Order</label>
+                                <input type="number" id="lead" class="form-control" name="order[]" v-model="report.order[index]">
+                            </div>
+                        </b-col>
+                        <b-col>
+                            <div class="form-group">
+                                <label for="">Tipe Order</label>
+                                <select name="order_type_id[]" class="form-control text-light" v-model="report.order_type_id[index]">
+                                    <option value="">Pilih</option>
+                                    <option v-for="(row, index) in types.data" :value="row.id" :key="index">
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </b-col>
+                        <b-col col lg="1">
+                            <div class="form-group">
+                                <vs-button
+                                    icon
+                                    color="danger"
+                                    @click="removeFind"
+                                >
+                                    <i class='fas fa-times-circle' ></i>
+                                    <!-- <i class="mdi mdi-backspace"></i> -->
+                                </vs-button>
+                                <!-- <b-button pill variant="outline-danger" >
+                                </b-button> -->
+                            </div>
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col>
+                            <b-button
+                                @click="addFind"
+                                variant="primary"
+                            >
+                                Tambah Form Orderan
+                            </b-button>
+                        </b-col>
+                    </b-row>
+                </b-card>
                 <v-divider></v-divider>
                 <div class="form-group">
                     <label for="jml_transaksi">Jumlah Transaksi</label>
@@ -144,6 +129,9 @@ export default {
     methods: {
         addFind: function () {
             this.finds.push({ value: '' });
+        },
+        removeFind(index){
+           this.finds.splice(index,1);
         },
         ...mapActions('reportCs', ['getReports', 'submitReportCs']),
         ...mapActions('productCategory', ['getListCategoryTypes']),
