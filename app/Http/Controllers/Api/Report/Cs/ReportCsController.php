@@ -13,10 +13,11 @@ class ReportCsController extends Controller
 {
     public function index()
     {
-        $user = request()->user();
+        $user = request()->user(); //get user login
+
         $start = Carbon::now()->startOfMonth()->format('Y-m-d H:i:s');
         $end = Carbon::now()->endOfMonth()->format('Y-m-d H:i:s');
-        $reports = ReportCs::with(['order'])->where('user_id', $user->id)->orderBy('created_at', 'DESC');
+        $reports = ReportCs::with(['order.productType', 'order.orderType'])->where('user_id', $user->id)->orderBy('created_at', 'DESC');
         if (request()->date != '') {
             $date = explode(" " ,request()->date);
             $start = Carbon::parse($date[0])->format('Y-m-d') .'%00:00:01';

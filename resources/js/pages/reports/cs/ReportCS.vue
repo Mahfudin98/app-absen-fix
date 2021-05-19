@@ -63,8 +63,8 @@
                                             </thead>
                                             <tbody v-for="(order, index) in row.item.order" :key="index">
                                                 <tr>
-                                                    <td>{{ order.product_type_id.name }}</td>
-                                                    <td>{{ order.order_type_id.name }}</td>
+                                                    <td>{{ order.product_type.name }}</td>
+                                                    <td>{{ order.order_type.name }}</td>
                                                     <td>{{ order.order }}</td>
                                                 </tr>
                                             </tbody>
