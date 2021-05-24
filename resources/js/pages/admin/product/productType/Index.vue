@@ -24,7 +24,7 @@
                       </div>
                     </div>
                     <div class="table-responsive">
-                        <b-table class="table" :items="types.data" :fields="fields" show-empty>
+                        <b-table class="table" :items="typeProducts.data" :fields="fields" show-empty>
                             <template v-slot:cell(kategory)="row">
                                 {{ row.item.product_category.name }}
                             </template>
@@ -35,16 +35,16 @@
                     </div>
                     <div class="row">
                         <div class="col-md-8">
-                            <p v-if="types.data"><i class="fa fa-bars"></i> {{ types.data.length }} item dari {{ types.meta.total }} total data</p>
+                            <p v-if="typeProducts.data"><i class="fa fa-bars"></i> {{ typeProducts.data.length }} item dari {{ typeProducts.meta.total }} total data</p>
                         </div>
                         <div class="col-md-4">
                             <div class="pull-right">
                                 <b-pagination
                                     v-model="page"
-                                    :total-rows="types.meta.total"
-                                    :per-page="types.meta.per_page"
-                                    aria-controls="types"
-                                    v-if="types.data && types.data.length > 10"
+                                    :total-rows="typeProducts.meta.total"
+                                    :per-page="typeProducts.meta.per_page"
+                                    aria-controls="typeProducts"
+                                    v-if="typeProducts.data && typeProducts.data.length > 10"
                                 ></b-pagination>
                             </div>
                         </div>
@@ -59,9 +59,9 @@
 import { mapActions, mapState } from 'vuex'
 import AddData from './Add'
 export default {
-    name: 'DataPosition',
+    name: 'DataProductType',
     created() {
-        this.getTypes();
+        this.getTypesProduct();
     },
     data() {
         return {
@@ -75,7 +75,7 @@ export default {
     },
     computed: {
         ...mapState('productType', {
-            types: state => state.types
+            typeProducts: state => state.typeProducts
         }),
         page: {
             get() {
@@ -88,14 +88,14 @@ export default {
     },
     watch: {
         page() {
-            this.getTypes()
+            this.getTypesProduct()
         },
         search() {
-            this.getTypes(this.search)
+            this.getTypesProduct(this.search)
         }
     },
     methods: {
-        ...mapActions('productType', ['getTypes']),
+        ...mapActions('productType', ['getTypesProduct']),
     },
     components: {
         'btn-add': AddData

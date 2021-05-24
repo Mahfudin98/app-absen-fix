@@ -78,4 +78,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+
+    public function reportCs()
+    {
+        return $this->hasMany(ReportCs::class);
+    }
+
+    public function reportAdv()
+    {
+        return $this->hasMany(ReportAdv::class);
+    }
+
+    public function reportCsAdv(){
+        return $this->hasMany(ReportCs::class, 'parent_id');
+    }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ProductCategoryController;
 use App\Http\Controllers\Api\ProductTypeController;
 use App\Http\Controllers\Api\Project\ProjectController;
 use App\Http\Controllers\Api\Project\TasksController;
+use App\Http\Controllers\Api\Report\ADV\ReportADVController;
 use App\Http\Controllers\Api\Report\Cs\ReportCsController;
 use App\Http\Controllers\Api\RolePermissionController;
 use App\Http\Controllers\Api\UserController;
@@ -76,4 +77,9 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/report-cs', [ReportCsController::class, 'index'])->name('report.cs.index');
     Route::get('/report-cs-filter', [ReportCsController::class, 'filter'])->name('report.filter.cs.index');
     Route::post('/post-report-cs', [ReportCsController::class, 'store'])->name('report.cs.add');
+    Route::get('/report-cs-adv', [ReportCsController::class, 'maxlead'])->name('report.cs.maxlead');
+
+    // route for report adv
+    Route::get('/report-adv', [ReportADVController::class, 'index'])->name('report.adv.index');
+    Route::post('/post-report-adv', [ReportADVController::class, 'store'])->name('report.adv.add');
 });

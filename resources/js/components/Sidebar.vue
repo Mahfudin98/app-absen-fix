@@ -162,7 +162,7 @@
                 <div class="collapse" id="report">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <router-link class="nav-link" :to="{ name: 'adv.report.index' }">
+                        <router-link class="nav-link" :to="{ name: 'adv.report.data' }">
                             Report For ADV
                         </router-link>
                     </li>

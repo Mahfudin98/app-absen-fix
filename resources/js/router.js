@@ -40,6 +40,8 @@ import Salary from './pages/salary/Salary.vue'
 import IndexReport from './pages/reports/IndexReport.vue'
 // import page for report adv
 import ADVReport from './pages/reports/adv/IndexAdv.vue'
+import ADVReportData from './pages/reports/adv/ReportAdv.vue'
+import ADVReportAdd from './pages/reports/adv/Add.vue'
 // import page for report cs
 import CSReport from './pages/reports/cs/IndexCS.vue'
 import CSReportData from './pages/reports/cs/ReportCS.vue'
@@ -224,9 +226,27 @@ const router = new Router({
             children: [
                 {
                     path: 'adv-report-index',
-                    name: 'adv.report.index',
                     component: ADVReport,
-                    meta: { title: 'Report ADV' }
+                    children: [
+                        {
+                            path: '',
+                            component: ADVReportData,
+                            name: 'adv.report.data',
+                            meta: { title: 'Report ADV' }
+                        },
+                        {
+                            path: 'adv-add-report',
+                            name: 'adv.add.report',
+                            component: ADVReportAdd,
+                            meta: { title: 'Add Report ADV' }
+                        },
+                        // {
+                        //     path: 'cs-edit-report/:id',
+                        //     name: 'cs.edit.report',
+                        //     component: CSReportEdit,
+                        //     meta: { title: 'Edit Report CS' }
+                        // }
+                    ]
                 },
                 {
                     path: 'cs-report-index',
