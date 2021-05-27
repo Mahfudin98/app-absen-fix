@@ -100,6 +100,15 @@ const actions = {
             })
         })
     },
+    getChartCS({ commit }) {
+        return new Promise((resolve, reject) => {
+            $axios.get(`/report-cs-chart`)
+            .then((response) => {
+                commit('ASSIGN_DATA', response.data.data)
+                resolve(response.data)
+            })
+        })
+    },
 }
 
 export default {

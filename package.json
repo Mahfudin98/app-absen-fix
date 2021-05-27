@@ -30,6 +30,7 @@
     "dependencies": {
         "@dangvanthanh/vue-clock": "^0.2.1",
         "bootstrap-vue": "^2.21.2",
+        "chart.js": "^3.2.1",
         "compass-mixins": "^0.12.10",
         "epic-spinners": "^1.1.0",
         "moment": "^2.29.1",

@@ -78,6 +78,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/report-cs-filter', [ReportCsController::class, 'filter'])->name('report.filter.cs.index');
     Route::post('/post-report-cs', [ReportCsController::class, 'store'])->name('report.cs.add');
     Route::get('/report-cs-adv', [ReportCsController::class, 'maxlead'])->name('report.cs.maxlead');
+    Route::get('/report-cs-chart', [ReportCsController::class, 'chart'])->name('report.cs.chart');
 
     // route for report adv
     Route::get('/report-adv', [ReportADVController::class, 'index'])->name('report.adv.index');

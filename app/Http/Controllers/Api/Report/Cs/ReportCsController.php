@@ -90,4 +90,14 @@ class ReportCsController extends Controller
         }
         return response()->json(['status' => 'success', 'data' => $max], 200);
     }
+
+    public function chart()
+    {
+        $user = request()->user(); //get user login
+        $chart = ReportCs::with(['user', 'order.productType'])->where('parent_id', $user->id)->get();
+        // foreach ($chart as $value) {
+        //     return response()->json(['status' => 'success', 'data' => $value->omset], 200);
+        // }
+        return response()->json(['status' => 'success', 'data' => $chart], 200);
+    }
 }
