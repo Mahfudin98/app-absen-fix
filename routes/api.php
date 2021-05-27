@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AbsentController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\Order\OrderTypeController;
 use App\Http\Controllers\Api\PositionsController;
@@ -83,4 +84,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     // route for report adv
     Route::get('/report-adv', [ReportADVController::class, 'index'])->name('report.adv.index');
     Route::post('/post-report-adv', [ReportADVController::class, 'store'])->name('report.adv.add');
+
+    // route for absent
+    Route::get('/absen-index', [AbsentController::class, 'index'])->name('absen.index');
+    Route::post('/absen-post', [AbsentController::class, 'store'])->name('absen.post');
 });

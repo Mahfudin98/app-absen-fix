@@ -108,6 +108,15 @@
                 <span class="menu-title">Karyawan</span>
                 </router-link>
             </li>
+            <!-- route link for absent list -->
+            <li class="nav-item menu-items">
+                <router-link class="nav-link" :to="{ name: 'absen.list.index' }">
+                <span class="menu-icon">
+                    <i class="fas fa-list-ol"></i>
+                </span>
+                <span class="menu-title">List Absen</span>
+                </router-link>
+            </li>
             <!-- route link for project -->
             <li class="nav-item menu-items">
                 <a class="nav-link" data-toggle="collapse" href="#project" aria-expanded="false" aria-controls="project">

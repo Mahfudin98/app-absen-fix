@@ -7,6 +7,7 @@ import position from './stores/position.js'
 import user from './stores/user'
 import employe from './stores/employe'
 import project from './stores/project'
+import absent from './stores/absent'
 import taskproject from './stores/taskproject'
 // import for report
 import reportCs from './stores/report/reportCs'
@@ -32,6 +33,7 @@ const store = new Vuex.Store({
         productCategory,
         productType,
         orderType,
+        absent,
         // store report
         reportCs,
         reportAdv

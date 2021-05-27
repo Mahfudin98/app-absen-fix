@@ -31,6 +31,9 @@ import IndexCreator from './pages/project/creator/IndexCreator.vue'
 // import page for absen
 import IndexAbsen from './pages/absen/IndexAbsen.vue'
 import Absen from './pages/absen/Absen.vue'
+// import page for absen list
+import IndexListAbsen from './pages/absen/list/Index.vue'
+import DataListAbsen from './pages/absen/list/DataAbsen'
 
 // import page for salary
 import IndexSalary from './pages/salary/IndexSalary.vue'
@@ -201,6 +204,20 @@ const router = new Router({
                     name: 'absen.index',
                     component: Absen,
                     meta: { title: 'Absen Index'}
+                }
+            ]
+        },
+        // path for page Absent List
+        {
+            path: '/absen-list',
+            component: IndexListAbsen,
+            meta: { requiresAuth: true },
+            children: [
+                {
+                    path: '',
+                    name: 'absen.list.index',
+                    component: DataListAbsen,
+                    meta: { title: 'Absen List Index'}
                 }
             ]
         },
